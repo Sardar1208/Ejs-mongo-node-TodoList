@@ -1,0 +1,92 @@
+<!-- LIST VIEW -->
+
+<div class="row">
+    <ul class="list-group w-100 mt-2 p-0">
+        <% for(let item of taskList){ %>
+            
+            <li class="list-group-item item d-inline-block" style="padding-right: 0;">
+                <div class="row w-100">
+
+                    <!-- checkbox and task -->
+                    <div class="col-7 cnt">
+                        <div class="row">
+                            <div class="col-1">
+                                <form action="http://localhost:3000/edit/<%- item.id %>?_method=patch" method="POST" class="formtocheck">
+                                    <input type='hidden' value='off' name='checked' name="checked" class="hidden">
+                                    <input class="form-check-input me-1 float-left checkbox" type="checkbox" name="checked" <% if(item.checked == true){ %> checked <% } %>>
+                                </form>
+                            </div>
+                            <div class="col-11 taskspan">
+                                <span class="float-left task"><%= item.task %></span>
+                            </div>
+                        </div>  
+                    </div>
+                    
+                    <div class="col-12 editform w-100">
+                        <form action="http://localhost:3000/edit/<%- item.id %>?_method=patch" method="POST" class="d-inline-block w-100 formtoedit">
+                            <input type="text" placeholder="task" name="task" class="edittask w-100" value="<%= item.task %>">
+                        </form>
+                    </div>
+                    
+
+                    <!-- priority , deadline and delete -->
+                    <div class="col-5 pdnd">
+                        <div class="row">
+                            <div class="col-5 align-content-end priority">
+                                <% if(item.priority == "high"){ %>
+                                    <span class="badge right bg-danger"><%= item.priority %></span>
+                                <% }else if(item.priority == "medium"){ %>
+                                    <span class="badge right bg-warning"><%= item.priority %></span>
+                                <% }else{ %>
+                                    <span class="badge right bg-success"><%= item.priority %></span>
+                                <% } %> 
+                            </div>
+
+                            <div class="col-5 priorityform align-content-end">
+                                <form action="http://localhost:3000/edit/<%- item.id %>?_method=patch" method="POST" class="formtopriority">
+                                    <select name="priority" id="priority" class="select">
+                                        <option value="high" <% if(item.priority == "high"){ %>selected <% } %>>High</option>
+                                        <option value="medium" <% if(item.priority == "medium"){ %>selected <% } %>>Medium</option>
+                                        <option value="low" <% if(item.priority == "low"){ %>selected <% } %>>Low</option>
+                                    </select>
+                                </form>
+                            </div>
+                            <div class="col-5 align-content-end deadline">
+                                <% const date = new Date() %>
+                                <% let temp = new Date() %>
+                                <% let x = new Date(item.dateCreated) %>
+                                <% let count = 0 %>
+                                <!-- x is the day when the deadline expires -->
+                                <% x.setDate(x.getDate() + item.deadline) %> 
+                                
+                                <% if(x >= date){ %>
+                                    <% count = 0 %> 
+                                    <% temp = date; %>
+                                    <% for(let j = 1; j <= item.deadline; j++){ %>
+                                        <% temp.setDate(temp.getDate() + 1) %>
+                                        <% count += 1 %>
+                                        <% if((temp.getMonth() >= x.getMonth()) && (temp.getDay() >= x.getDay())){ %>                            
+                                            <% break; %>
+                                        <% } %>
+                                    <% } %>
+                                <% } %>
+                                <span class="right">&nbsp days left</span>
+                                <span class="right count"><%= `${count}` %></span>
+                            </div>
+                            <div class="col-5 deadlineform">
+                                <form action="http://localhost:3000/edit/<%- item.id %>?_method=patch" method="POST" class="formtodeadline p-0 m-0">
+                                    <input type="number" placeholder="deadline" name="deadline" class="editdeadline w-50" value="<%= item.deadline %>">
+                                </form>
+                            </div>
+                            <div class="col-2 align-content-end hovers">
+                                <form action="http://localhost:3000/delete/<%- item.id %>?_method=delete" method="POST">
+                                    <button class="btn py-0 my-0"><%- include("../../svg/delete.svg") %></button>
+                                </form>
+                            </div>
+                        </div>                         
+                    </div>                 
+                </div>
+            </li>
+        <% } %>
+    </ul>
+</div>

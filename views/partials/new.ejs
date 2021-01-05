@@ -1,0 +1,32 @@
+<div class="row newform d-none mb-5" id="newform">
+    <div class="card mt-2">
+        <div class="card-body">
+            <form action="http://localhost:3000/new" method="POST" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="newtask" class="form-label">Write your task</label>
+                    <input type="text" class="form-control" id="newtask" name="newtask" required>
+                    <div class="invalid-feedback">
+                        Task cannot be empty.
+                    </div>
+                </div>
+    
+                <div class="d-flex justify-content-between">
+                    <div class="col-md-4 d-inline-block">
+                        <label for="newpriority" class="form-label">Select priority</label>
+                        <select id="newpriority" class="form-select" name="newpriority">
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 d-inline-block">
+                        <label for="newdeadline" class="form-label">Deadline (Days)</label>
+                        <input type="number" class="form-control" id="newdeadline" value="2" name="newdeadline">
+                    </div>
+                    <button class="btn btn-danger d-inline-block cancelbtn">CANCEL</button>
+                    <button type="submit" class="btn btn-primary d-inline-block">SAVE</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+body{
+    background-color:	#ecebe1 !important;
+}
+.topbar{
+    background-color: #a17cb8;
+}
+.navbtn{
+    background-color: #a17cb8;
+    border: none;
+    font-size: 1.1rem;
+}
+.navbtn:hover{
+    background-color:#6c4a7e;
+}
+.span{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.right{
+    float: right;
+}
+.item{
+    overflow: hidden;
+}
+.item:hover{
+    background-color: #ecebe1;
+}
+.hovers{
+    display:none;
+    font-size: 1rem;
+    transition: display 0.5s ease;
+}
+.item:hover .hovers{
+    display: inline-block;
+}
+/* .item:hover .priority, .item:hover .deadline{
+    display: none;
+} */
+.priority, .deadline{
+    transition: 0.3s ease;
+}
+.item:hover .task{
+    font-weight: bold;
+}
+.edittask{
+    border: none;
+    background-color: transparent;
+}
+.editform{
+    display: none;
+}
+.priorityform{
+    display: none;
+}
+.deadlineform{
+    display: none;
+}
+.edittask:focus{
+    outline: none;
+}
+.delete{ 
+    border: none;
+    font-size: 0.7rem;
+}
+.select:focus{
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+/* .editdeadline{
+    display: none;
+} */
+.editdeadline:focus{
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+.taskspan{
+    padding-right: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.item:hover .taskspan{
+    white-space:unset;
+    text-overflow: clip;
+    overflow: unset;
+}

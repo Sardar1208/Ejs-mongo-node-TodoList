@@ -1,0 +1,39 @@
+<%- include("./partials/header.ejs") %>
+
+    <body>
+        <div class="col-md-6 m-auto">
+            <!-- navbar -->
+            <%- include("./partials/navbar.ejs") %>
+
+            <div class="row">
+                <div class="col">
+                    <select name="sort" id="sort" class="sort">
+                        <option value="default">Sort by</option>
+                        <option value="completion">Completion</option>
+                        <option value="priority">Priority</option>
+                        <option value="deadline">Deadline</option>
+                    </select>
+                </div>
+                <!-- <div class="col-6">
+                    <button class="btn btn-primary">Sort by Completion</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-primary">Sort by Priority</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-primary">Sort by Priority</button>
+                </div> -->
+            </div>
+
+            <!-- list -->
+            <%- include("./partials/listview.ejs") %>
+
+            <!-- addnew -->
+            <%- include("./partials/new.ejs") %>
+        </div>
+
+        <%- include("./partials/footer.ejs") %>
+
+    </body>
+
+    </html>
